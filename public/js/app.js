@@ -1,3 +1,4 @@
-angular.module('portfolio', [
-	'ui.router'
+angular.module('test_task', [
+	'ui.router', 
+	'ngCookies'
 ]);

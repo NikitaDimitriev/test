@@ -1,151 +1,153 @@
 angular
-	.module('portfolio')
-    .controller('MainCtrl', MainCtrl);
-MainCtrl.$inject = ['PortfolioService', '$state', '$scope'];
+	.module('test_task')
+	.controller('MainCtrl', MainCtrl);
+MainCtrl.$inject = ['$scope', '$cookieStore'];
 
-function MainCtrl(PortfolioService, $state, $scope) {
+function MainCtrl($scope, $cookieStore) {
+	var vm = this;
+	vm.savea1 = savea1;
+	vm.savea2 = savea2;
+	vm.savea3 = savea3;
+	vm.saveb1 = saveb1;
+	vm.saveb2 = saveb2;
+	vm.saveb3 = saveb3;
+	vm.saveX = saveX;
+	vm.saveY = saveY;
+	vm.saveResult = saveResult;
+	vm.sum = sum;
+	vm.error = "";
 
 	activate();
 
 	function activate() {
-		
+		getValue();
+	}
+	//Поліфіл взятий з https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger
+	Number.isInteger = Number.isInteger || function (value) {
+		return typeof value === 'number'
+			&& Number.isFinite(value)
+			&& !(value % 1);
+	};
+
+	function sum(x, y) {
+		switch (x) {
+			case 'A1':
+			case 'a1':
+				x = vm.a1; vm.error = "";
+				break;
+			case 'A2':
+			case 'a2':
+				x = vm.a2; vm.error = "";
+				break;
+			case 'A3':
+			case 'a3':
+				x = vm.a3; vm.error = "";
+				break;
+			case 'B1':
+			case 'b1':
+				x = vm.b1; vm.error = "";
+				break;
+			case 'B2':
+			case 'b2':
+				x = vm.b2; vm.error = "";
+				break;
+			case 'B3':
+			case 'b3':
+				x = vm.b3; vm.error = "";
+				break;
+			default:
+				vm.error = "Ви ввели не вірне поле"
+		}
+		switch (y) {
+			case 'A1':
+			case 'a1':
+				y = vm.a1; console.log("a1", y);
+				break;
+			case 'A2':
+			case 'a2':
+				y = vm.a2; console.log("a2", y);
+				break;
+			case 'A3':
+			case 'a3':
+				y = vm.a3; console.log("a3", y);
+				break;
+			case 'B1':
+			case 'b1':
+				y = vm.b1;
+				break;
+			case 'B2':
+			case 'b2':
+				y = vm.b2;
+				break;
+			case 'B3':
+			case 'b3':
+				y = vm.b3;
+				break;
+			default:
+				break;
+		}
+		x = parseInt(x, 10);
+		y = parseInt(y, 10);
+		if (Number.isInteger(x) && Number.isInteger(y)) {
+			return vm.result = x + y, vm.error = "";
+		} else { return vm.error = "Ви ввели не вірні данні.", vm.result = ""};
 	}
 
-    $scope.$on('$viewContentLoaded', function(){ 
-    var ie = (function(){
-					var undef,rv = -1; // Return value assumes failure.
-					var ua = window.navigator.userAgent;
-					var msie = ua.indexOf('MSIE ');
-					var trident = ua.indexOf('Trident/');
+	function saveX(value) {
 
-					if (msie > 0) {
-						// IE 10 or older => return version number
-						rv = parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
-					} else if (trident > 0) {
-						// IE 11 (or newer) => return version number
-						var rvNum = ua.indexOf('rv:');
-						rv = parseInt(ua.substring(rvNum + 3, ua.indexOf('.', rvNum)), 10);
-					}
+		$cookieStore.put('x', value);
 
-					return ((rv > -1) ? rv : undef);
-				}());
+	}
+	function saveY(value) {
+
+		$cookieStore.put('y', value);
+
+	}
+	function saveResult(value) {
+
+		$cookieStore.put('result', value);
+
+	}
+	function savea1(value) {
+
+		$cookieStore.put('a1', value);
+
+	}
+	function savea2(value) {
+
+		$cookieStore.put('a2', value);
+	}
+	function savea3(value) {
+
+		$cookieStore.put('a3', value);
+
+	}
+	function saveb1(value) {
 
 
-				// disable/enable scroll (mousewheel and keys) from http://stackoverflow.com/a/4770179					
-				// left: 37, up: 38, right: 39, down: 40,
-				// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
-				var keys = [32, 37, 38, 39, 40], wheelIter = 0;
+		$cookieStore.put('b1', value);
 
-				function preventDefault(e) {
-					e = e || window.event;
-					if (e.preventDefault)
-					e.preventDefault();
-					e.returnValue = false;  
-				}
+	}
+	function saveb2(value) {
 
-				function keydown(e) {
-					for (var i = keys.length; i--;) {
-						if (e.keyCode === keys[i]) {
-							preventDefault(e);
-							return;
-						}
-					}
-				}
+		$cookieStore.put('b2', value);
+	}
+	function saveb3(value) {
 
-				function touchmove(e) {
-					preventDefault(e);
-				}
 
-				function wheel(e) {
-					// for IE 
-					//if( ie ) {
-						//preventDefault(e);
-					//}
-				}
+		$cookieStore.put('b3', value);
+	}
+	function getValue() {
+		vm.a1 = $cookieStore.get('a1');
+		vm.a2 = $cookieStore.get('a2');
+		vm.a3 = $cookieStore.get('a3');
+		vm.b1 = $cookieStore.get('b1');
+		vm.b2 = $cookieStore.get('b2');
+		vm.b3 = $cookieStore.get('b3');
+		vm.x = $cookieStore.get('x');
+		vm.y = $cookieStore.get('y');
+		vm.result = $cookieStore.get('result');
+	}
 
-				// function disable_scroll() {
-				// 	window.onmousewheel = document.onmousewheel = wheel;
-				// 	document.onkeydown = keydown;
-				// 	document.body.ontouchmove = touchmove;
-				// }
 
-				// function enable_scroll() {
-				// 	window.onmousewheel = document.onmousewheel = document.onkeydown = document.body.ontouchmove = null;  
-				// }
-
-				var docElem = window.document.documentElement,
-					scrollVal,
-					isRevealed, 
-					noscroll, 
-					isAnimating,
-					container = document.getElementById( 'container' );
-
-				function scrollY() {
-					return window.pageYOffset || docElem.scrollTop;
-				}
-				
-				function scrollPage() {
-					scrollVal = scrollY();
-					
-					if( noscroll && !ie ) {
-						if( scrollVal < 0 ) return false;
-						// keep it that way
-						window.scrollTo( 0, 0 );
-					}
-
-					if( classie.has( container, 'notrans' ) ) {
-						classie.remove( container, 'notrans' );
-						return false;
-					}
-
-					if( isAnimating ) {
-						return false;
-					}
-					
-					if( scrollVal <= 0 && isRevealed ) {
-						toggle(0);
-					}
-					else if( scrollVal > 0 && !isRevealed ){
-						toggle(1);
-					}
-				}
-
-				function toggle( reveal ) {
-					isAnimating = true;
-					
-					if( reveal ) {
-						classie.add( container, 'modify' );
-					}
-					else {
-						noscroll = true;
-						// disable_scroll();
-						classie.remove( container, 'modify' );
-					}
-
-					// simulating the end of the transition:
-					// setTimeout( function() {
-					// 	isRevealed = !isRevealed;
-					// 	isAnimating = false;
-					// 	if( reveal ) {
-					// 		noscroll = false;
-					// 		// enable_scroll();
-					// 	}
-					// }, 250 );
-				}
-
-				// refreshing the page...
-				// var pageScroll = scrollY();
-				// noscroll = pageScroll === 0;
-				
-				// // disable_scroll();
-				
-				// if( pageScroll ) {
-				// 	isRevealed = true;
-				// 	classie.add( container, 'notrans' );
-				// 	classie.add( container, 'modify' );
-				// }
-				
-				window.addEventListener( 'scroll', scrollPage );
-  });
-    
 }

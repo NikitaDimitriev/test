@@ -1,38 +1,32 @@
-<div id="container" class="container intro-effect-sidefixed" ng-controller="MainCtrl">
-			<!-- Top Navigation -->
-			<header class="header">
-				<div class="bg-img"><img src="img/primaryPhoto.jpg" alt="Background Image" /></div>
-			</header>
-			<article class="content">
-				<div class="title">
-					<img src="img/logo.jpg" alt="logo">
-					<p class="subline">Sonya Photo</p>
-				</div>
-				<div class="navigation">
-					<a ui-sref="galerry">Галерея</a>
-					<a ui-sref="about">Обо Мне</a>
-					<a ui-sref="contact">Контакты</a>
-				</div>
-				<div class="contentItem" ui-sref="galerry">
-					<img src="img/portret.jpg">
-					<h1>Портретная съёмка</h1>
-					<p>Идеальный вариант для создания собственного портфолио. Так-же если просто хотите обзавестись хорошими снимками, этот вариант для Вас!</p>
-				</div>
-				<div class="contentItem" ui-sref="galerry">
-					<img src="img/simya.jpg">
-					<h1>Семейная съёмка</h1>
-					<p>То что нужно для того, чтоб запечатлить лучшие моменты из жизни и сохранить воспоминания!</p>
-				</div>
-				<div class="contentItem" ui-sref="galerry">
-					<img src="img/love-story.jpeg">
-					<h1>Love-story</h1>
-					<p>Для тех кто хочет показать свои чувства</p>
-				</div>
-				<div class="contentItem" ui-sref="galerry">
-					<img src="img/architektura.jpg">
-					<h1>Архитектурная съёмка</h1>
-					<p>Желаете получить хорошие кадры какого-то предмета или места, тогда вам сюда</p>
-				</div>
-			</article>
+<div id="container" class="container" ng-controller="MainCtrl">
+	<header class="top-menu">
+		EXSEL PARODY
+	</header>
+	<div class="discription">
+		<p>Щоб використати функцію SUM, введіть у поля нижче відповідні ячійки</p>
+	</div>
+	<div class="console-area">
+		<span>SUM(</span>
+		<input type="text" ng-model="vm.x" ng-change="vm.saveX(vm.x); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)">+
+		<input type="text" ng-model="vm.y" ng-change="vm.saveY(vm.y); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)">) =
+		<input type="text" ng-model="vm.result" disabled>
+
+	</div>
+	<span class="error">{{vm.error}}</span>
+	<div class="row">
+		<div class="field-area">
+			<div class="character">
+				<span>a</span>
+				<span>b</span>
+			</div>
+			<div class="inputs">
+				1<input type="text" ng-model="vm.a1" ng-change="vm.savea1(vm.a1); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)">
+				<input type="text" ng-model="vm.b1" ng-change="vm.savea2(vm.a2); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)"><br>
+				2<input type="text" ng-model="vm.a2" ng-change="vm.savea3(vm.a3); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)">
+				<input type="text" ng-model="vm.b2" ng-change="vm.saveb1(vm.b1); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)"><br>
+				3<input type="text" ng-model="vm.a3" ng-change="vm.saveb2(vm.b2); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)">
+				<input type="text" ng-model="vm.b3" ng-change="vm.saveb3(vm.b3); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)">
+			</div>
+		</div>
+	</div>
 </div>
-<script src="./js/scrollEfect.js"></script>
