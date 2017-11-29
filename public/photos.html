@@ -1,0 +1,21 @@
+<div class="navigation" id="gallery">
+	<img src="img/logo.jpg" ui-sref="home" alt="logo">
+	<a ui-sref="galerry">Галерея</a>
+	<a ui-sref="about">Обо Мне</a>
+	<a ui-sref="contact">Контакты</a>
+</div>
+
+<div class="contentPh">
+	<div class="photoPh">
+		<img ng-repeat="(key, image) in vm.pht track by $index" ng-src="{{image}}" class="photo" ng-click="vm.displayModal(key)">
+	</div>
+</div>
+
+<div class="modal" ng-show="vm.modal">
+	<i class="fa fa-times close" ng-click="vm.displayModal()"></i>
+	<div class="slider">
+		<div class="right-controll" ng-click="vm.nextImg(key)"></div>
+		<div class="left-controll" ng-click="vm.prevImg(key)"></div>
+		<img ng-src="{{vm.currentImg}}" alt="fail">
+	</div>
+</div>
