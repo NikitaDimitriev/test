@@ -5,11 +5,13 @@
 	<div class="discription">
 		<p>Щоб використати функцію SUM, введіть у поля нижче відповідні ячійки</p>
 	</div>
+	<button ng-click="vm.addItems()" class="button">Зберегти дані</button>
+	
 	<div class="console-area">
 		<span>SUM(</span>
-		<input type="text" ng-model="vm.x" ng-change="vm.saveX(vm.x); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)">+
-		<input type="text" ng-model="vm.y" ng-change="vm.saveY(vm.y); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)">) =
-		<input type="text" ng-model="vm.result" disabled>
+		<input type="text" ng-model="vm.items.x" ng-change="vm.sum(vm.items.x, vm.items.y)">+
+		<input type="text" ng-model="vm.items.y" ng-change="vm.sum(vm.items.x, vm.items.y)">) =
+		<input type="text" ng-model="vm.items.result" disabled>
 
 	</div>
 	<span class="error">{{vm.error}}</span>
@@ -20,13 +22,14 @@
 				<span>b</span>
 			</div>
 			<div class="inputs">
-				1<input type="text" ng-model="vm.a1" ng-change="vm.savea1(vm.a1); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)">
-				<input type="text" ng-model="vm.b1" ng-change="vm.savea2(vm.a2); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)"><br>
-				2<input type="text" ng-model="vm.a2" ng-change="vm.savea3(vm.a3); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)">
-				<input type="text" ng-model="vm.b2" ng-change="vm.saveb1(vm.b1); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)"><br>
-				3<input type="text" ng-model="vm.a3" ng-change="vm.saveb2(vm.b2); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)">
-				<input type="text" ng-model="vm.b3" ng-change="vm.saveb3(vm.b3); vm.sum(vm.x, vm.y); vm.saveResult(vm.result)">
+				1<input type="text" ng-model="vm.items.a1" ng-change="vm.sum(vm.items.x, vm.items.y)">
+				<input type="text" ng-model="vm.items.b1" ng-change="vm.sum(vm.items.x, vm.items.y)"><br>
+				2<input type="text" ng-model="vm.items.a2" ng-change="vm.sum(vm.items.x, vm.items.y)">
+				<input type="text" ng-model="vm.items.b2" ng-change="vm.sum(vm.items.x, vm.items.y)"><br>
+				3<input type="text" ng-model="vm.items.a3" ng-change="vm.sum(vm.items.x, vm.items.y)">
+				<input type="text" ng-model="vm.items.b3" ng-change="vm.sum(vm.items.x, vm.items.y)">
 			</div>
 		</div>
 	</div>
+	
 </div>

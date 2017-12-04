@@ -2,6 +2,7 @@
   "name": "test_task",
   "main": "server.js",
   "dependencies": {
+    "mongoose": "latest",
     "angular-cookies": "^1.6.1",
     "body-parser": "~1.4.2",
     "express": "~4.5.1",

@@ -1,4 +1,3 @@
 angular.module('test_task', [
-	'ui.router', 
-	'ngCookies'
+	'ui.router'
 ]);

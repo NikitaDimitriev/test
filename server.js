@@ -1,12 +1,20 @@
 // modules =================================================
 var express        = require('express');
 var app            = express();
+var mongoose         = require('mongoose');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 
+var db = require('./config/db');
 
-
-var port = process.env.PORT || 8088; // set our port
+var port = process.env.PORT || 8080; // set our port
+mongoose.connect(db.url, function(err, db) {
+	if (err) {
+		console.log("error:", err);	
+	} else {
+  		console.log("Connected correctly to server");
+  	}
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); 
